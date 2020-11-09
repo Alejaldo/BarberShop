@@ -1,0 +1,24 @@
+<h1>Our contacts</h1>
+<p>Moscow city, Mellstroy@room.ru</p>
+<p><%= @title %><p>
+<p><%= @message %></p>
+
+<form action="/contacts" method="POST" role="form">
+    <fieldset class="form-group">
+        <ol>
+            <li>
+                <label for="name">Your name</label>
+                <input type="text" name="name" class="form-control">
+            </li>
+            <li>
+                <label for="mail">Your e-mail</label>
+                <input type="text" name="mail" class="form-control">
+            </li>
+            <li>
+                <label for="body">Your message</label>
+                <textarea name="body" class="form-control"></textarea>
+            </li>
+        </ol
+    </fieldset>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
