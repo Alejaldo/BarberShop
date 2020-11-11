@@ -6,7 +6,9 @@ require 'pony'
 require 'sqlite3'
 
 def get_db
-	return SQLite3::Database.new 'barb.db'
+	db = SQLite3::Database.new 'barb.db'
+	db.results_as_hash = true
+	return db
 end
 
 def save_db
@@ -127,4 +129,8 @@ post '/contacts' do
 	@obana = "Hey #{@name} your message has succesfully been sent to us!"
 
 	erb :ura
+end
+
+get '/showusers' do
+	erb "Hello epta!"
 end
