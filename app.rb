@@ -11,8 +11,8 @@ end
 
 def save_db
 	db = get_db
-	db.execute 'INSERT INTO Users (username, phone, date, time, fcker, color)
-	VALUES (?, ?, ?, ?, ?, ?)', [@username, @phone, @date, @time, @fcker, @color]
+	db.execute 'INSERT INTO Users (username, phone, date, fcker, color)
+	VALUES (?, ?, ?, ?, ?)', [@username, @phone, @date, @fcker, @color]
 	db.close 
 end
 
@@ -23,7 +23,6 @@ configure do
 		"username"	TEXT,
 		"phone"	TEXT,
 		"date"	TEXT,
-		"time"	TEXT,
 		"fcker"	TEXT,
 		"color"	TEXT,
 		PRIMARY KEY("Id" AUTOINCREMENT)
@@ -36,7 +35,7 @@ get '/' do
 end
 
 get '/about' do 
-	@error = 'something wrong epta'
+	#@error = 'something wrong epta'
 	erb :about
 end
 
@@ -48,15 +47,14 @@ post '/visit' do
 	@username = params[:username]
 	@phone = params[:phone]
 	@date = params[:date]
-	@time = params[:time]
 	@fcker = params[:fcker]
 	@color = params[:color]
 
 	@title = 'Good!'
-	@message = "#{@username} (#{@phone}) you have just booked #{@date} at #{@time}. Our #{@fcker} will fck your ass with #{@color} color of nation!"
+	@message = "#{@username} (#{@phone}) you have just booked #{@date}. Our #{@fcker} will fck your ass with #{@color} color of nation!"
 	
 	guestlist = File.open './public/guestlist.txt', 'a'
-	guestlist.write "Guest #{@username} (phone: #{@phone}) has made appointment on #{@date} at #{@time} with Mr. #{@fcker} and #{@color} color \n"
+	guestlist.write "Guest #{@username} (phone: #{@phone}) has made appointment on #{@date} with Mr. #{@fcker} and #{@color} color \n"
 	guestlist.close
 
 	hh = {
