@@ -5,9 +5,20 @@ require 'sinatra/reloader'
 require 'pony'
 require 'sqlite3'
 
+def get_db
+	return SQLite3::Database.new 'barb.db'
+end
+
+def save_db
+	db = get_db
+	db.execute 'INSERT INTO Users (username, phone, date, time, fcker, color)
+	VALUES (?, ?, ?, ?, ?, ?)', [@username, @phone, @date, @time, @fcker, @color]
+	db.close 
+end
+
 configure do
-	@db = SQLite3::Database.new 'barb.db'
-	@db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS "Users" (
 		"id"	INTEGER,
 		"username"	TEXT,
 		"phone"	TEXT,
@@ -17,6 +28,7 @@ configure do
 		"color"	TEXT,
 		PRIMARY KEY("Id" AUTOINCREMENT)
 	)'
+	db.close
 end
 
 get '/' do
@@ -65,6 +77,8 @@ post '/visit' do
 	if @error != ''
 		return erb :visit
 	end
+
+	save_db
 
 	erb :message
 end
