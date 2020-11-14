@@ -132,5 +132,5 @@ post '/contacts' do
 end
 
 get '/showusers' do
-	erb "Hello epta!"
+	erb :showusers
 end
