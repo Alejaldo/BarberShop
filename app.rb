@@ -78,7 +78,7 @@ post '/visit' do
 	@color = params[:color]
 
 	@title = 'Good!'
-	@message = "#{@username} (#{@phone}) you have just booked #{@date}. Our #{@fcker} will fck your ass with #{@color} color of nation!"
+	@message = "<h2>Tfck you, you are confirmed epta!</h2>"
 	
 	guestlist = File.open './public/guestlist.txt', 'a'
 	guestlist.write "Guest #{@username} (phone: #{@phone}) has made appointment on #{@date} with Mr. #{@fcker} and #{@color} color \n"
