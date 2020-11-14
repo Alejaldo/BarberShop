@@ -28,10 +28,11 @@ $( function() {
     <div class="form-group">
       <label>Your fcker</label>
       <select name="fcker" class="form-control">
-        <option value="none" selected>Choose your personal assfcker ...</option>
-        <option value="Big Joe">Big Joe</option>
-        <option value="Tricky Ricky">Tricky Ricky</option>
-        <option value="Sissy Pososi">Sissy Pososi</option>
+
+        <% @barbers.each do |item| %>
+          <option <%= @fcker == item['username'] ? 'selected' : '' %>><%= item['username'] %></option>
+        <% end %>  
+
       </select>
     </div>
     
